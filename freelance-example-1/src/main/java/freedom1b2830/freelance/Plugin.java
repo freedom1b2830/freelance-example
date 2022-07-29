@@ -10,14 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public class Plugin extends JavaPlugin implements Listener {
-	public static void main(String[] args) {
-	}
-
-	@Override
-	public void onDisable() {
-		getLogger().info("onDisable has been invoked!");
-	}
-
 	@Override
 	public void onEnable() {
 		Bukkit.getPluginManager().registerEvents(this, this);
@@ -28,9 +20,7 @@ public class Plugin extends JavaPlugin implements Listener {
 		@NotNull
 		EntityType tpy = event.getEntityType();
 		if (tpy.getEntityClass() == Villager.class) {
-			System.out.println("Plugin.villagerDamage()");
+			event.setCancelled(true);
 		}
-
 	}
-
 }
