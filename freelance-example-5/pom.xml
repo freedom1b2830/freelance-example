@@ -6,4 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>freelance-example-5</artifactId>
+  <properties>
+		<mainClass>freedom1b2830.freelance.ex5.Plugin</mainClass>
+	</properties>
 </project>
