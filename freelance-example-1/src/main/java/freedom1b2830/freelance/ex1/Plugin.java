@@ -1,4 +1,4 @@
-package freedom1b2830.freelance;
+package freedom1b2830.freelance.ex1;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
@@ -18,8 +18,8 @@ public class Plugin extends JavaPlugin implements Listener {
 	@EventHandler
 	public void villagerDamage(EntityDamageEvent event) {
 		@NotNull
-		EntityType tpy = event.getEntityType();
-		if (tpy.getEntityClass() == Villager.class) {
+		EntityType type = event.getEntityType();
+		if (type.getEntityClass() == Villager.class) {
 			event.setCancelled(true);
 		}
 	}
