@@ -21,6 +21,7 @@
 	</repositories>
 	<modules>
 		<module>freelance-example-1</module>
+		<module>freelance-example-2</module>
 		<module>freelance-example-3</module>
 		<module>freelance-example-4</module>
 		<module>freelance-example-5</module>
