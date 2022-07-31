@@ -23,7 +23,7 @@ public class Plugin extends JavaPlugin implements Listener {
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
             double health = livingEntity.getHealth();
-            double damage = event.getDamage();
+            double damage = event.getFinalDamage();
             if (health <= 0D || damage - health <= 0D) {
                 @NotNull Entity damager = event.getDamager();
                 if (damager instanceof Player) {
