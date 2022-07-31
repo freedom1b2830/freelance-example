@@ -31,6 +31,8 @@ public class Plugin extends JavaPlugin implements Listener {
         String message = PlainTextComponentSerializer.plainText().serialize(messageComponent);
         if (SpamFilter.filter(message)) {
             getOut().parallelStream().forEachOrdered(warn -> warn.warn(player, message));
+            event.getPlayer().sendMessage("BAD WORD");
+            event.setCancelled(true);
         }
     }
 
