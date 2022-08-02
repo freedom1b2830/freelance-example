@@ -1,3 +1,8 @@
 name: freedom1b2830-freelance-example-4
 main: freedom1b2830.freelance.ex4.Plugin
 version: 1.0
+commands:
+  healexp:
+    description: heal exp
+    usage: /<command>
+    permission: freedom1b2830.ex4.healexp

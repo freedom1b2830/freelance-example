@@ -20,14 +20,13 @@ public class Plugin extends JavaPlugin implements Listener {
     @EventHandler
     public void entityKilled2(EntityDamageByEntityEvent event) {
         @NotNull Entity entity = event.getEntity();
-        if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity) entity;
+        if (entity instanceof LivingEntity livingEntity) {
             double health = livingEntity.getHealth();
             double damage = event.getFinalDamage();
             double damage2 = event.getDamage();
             @NotNull Entity damager = event.getDamager();
-            if (damager instanceof Player) {
-                @NotNull String playerName = ((Player) damager).getName();
+            if (damager instanceof Player player) {
+                @NotNull String playerName = player.getName();
                 if (health <= 0D) {
                     getLogger().info(String.format("%s killed1 by %s ", livingEntity.getName(), playerName));
                 }
