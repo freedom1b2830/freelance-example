@@ -40,6 +40,7 @@ public class Plugin extends JavaPlugin implements CommandExecutor {
                 player.setHealth(HEALTHOK);
                 player.sendMessage("ELSE " + health, "" + healNeed, "" + exp);
             }
+            player.sendHealthUpdate();
         }
         return false;
     }
