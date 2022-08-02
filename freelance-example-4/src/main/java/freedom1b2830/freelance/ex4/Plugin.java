@@ -14,29 +14,29 @@ public class Plugin extends JavaPlugin implements CommandExecutor {
         this.getCommand("healexp").setExecutor(this);
     }
 
-    public static final double HEALTHOK = 20D;
+    public static final int HEALTHOK = 20;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         if (sender instanceof Player player) {
-            double health = player.getHealth();
+            int health = (int) player.getHealth();
             if (health >= HEALTHOK) {
                 player.sendMessage("your health is OK");
                 return false;
             }
             int exp = player.getTotalExperience();
-            double healNeed = HEALTHOK - health;
+            int healNeed = HEALTHOK - health;
             if (healNeed > exp) {
                 player.setHealth(player.getHealth() + exp);
-                player.setExp(0F);
+                player.setTotalExperience(0);
                 player.sendMessage("" + health, "" + healNeed, "" + exp);
             } else if (healNeed == exp) {
                 player.setHealth(HEALTHOK);
-                player.setExp(0F);
+                player.setTotalExperience(0);
                 player.sendMessage("healthOk");
             } else {
-                double expAfter = exp - healNeed;
-                player.setExp((float) expAfter);
+                int expAfter = exp - healNeed;
+                player.setTotalExperience(expAfter);
                 player.setHealth(HEALTHOK);
                 player.sendMessage("ELSE " + health, "" + healNeed, "" + exp);
             }
