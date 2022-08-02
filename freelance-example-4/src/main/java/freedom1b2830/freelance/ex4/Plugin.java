@@ -25,6 +25,10 @@ public class Plugin extends JavaPlugin implements CommandExecutor {
                 return false;
             }
             int exp = player.getTotalExperience();
+            if (exp == 0) {
+                player.sendMessage("your have not experience");
+                return false;
+            }
             int healNeed = HEALTHOK - health;
             if (healNeed > exp) {
                 player.setHealth(player.getHealth() + exp);
