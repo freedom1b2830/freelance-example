@@ -1,3 +1,8 @@
 name: freedom1b2830-freelance-example-5
 main: freedom1b2830.freelance.ex5.Plugin
 version: 1.0
+commands:
+  vilinvedit:
+    description: edit villager inventory
+    usage: /<command>
+    permission: freedom1b2830.ex5.vilinvedit
