@@ -1,17 +1,27 @@
 package freedom1b2830.freelance.ex4;
 
+import mc.alk.arena.util.ExpUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.logging.Level;
 
 //восстановление жизней за опыт
 public class Plugin extends JavaPlugin implements CommandExecutor {
     @Override
     public void onEnable() {
-        this.getCommand("healexp").setExecutor(this);
+        @Nullable PluginCommand co = this.getCommand("healexp");
+        if (co == null) {
+            getLogger().log(Level.SEVERE, "error on init command" + "healexp");
+            throw new IllegalStateException();
+        }
+        co.setExecutor(this);
     }
 
     public static final int HEALTHOK = 20;
@@ -24,7 +34,7 @@ public class Plugin extends JavaPlugin implements CommandExecutor {
                 player.sendMessage("your health is OK");
                 return false;
             }
-            int exp = player.getTotalExperience();
+            int exp = ExpUtil.getTotalExperience(player);
             if (exp == 0) {
                 player.sendMessage("your have not experience");
                 return false;
@@ -32,15 +42,15 @@ public class Plugin extends JavaPlugin implements CommandExecutor {
             int healNeed = HEALTHOK - health;
             if (healNeed > exp) {
                 player.setHealth(player.getHealth() + exp);
-                player.setTotalExperience(0);
+                ExpUtil.setTotalExperience(player, 0);
                 player.sendMessage("" + health, "" + healNeed, "" + exp);
             } else if (healNeed == exp) {
                 player.setHealth(HEALTHOK);
-                player.setTotalExperience(0);
+                ExpUtil.setTotalExperience(player, 0);
                 player.sendMessage("healthOk");
             } else {
                 int expAfter = exp - healNeed;
-                player.setTotalExperience(expAfter);
+                ExpUtil.setTotalExperience(player, expAfter);
                 player.setHealth(HEALTHOK);
                 player.sendMessage("ELSE " + health, "" + healNeed, "" + exp);
             }
